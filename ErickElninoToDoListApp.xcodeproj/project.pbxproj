@@ -3,25 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		763DF30A24AA3AB400FF97FC /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763DF30924AA3AB400FF97FC /* CategoryTableViewController.swift */; };
 		767A303624A9FE90006DC24A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767A303524A9FE90006DC24A /* AppDelegate.swift */; };
-		767A303824A9FE90006DC24A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767A303724A9FE90006DC24A /* ViewController.swift */; };
+		767A303824A9FE90006DC24A /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767A303724A9FE90006DC24A /* ListViewController.swift */; };
 		767A303B24A9FE90006DC24A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 767A303924A9FE90006DC24A /* Main.storyboard */; };
 		767A303D24A9FE92006DC24A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 767A303C24A9FE92006DC24A /* Assets.xcassets */; };
 		767A304024A9FE92006DC24A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 767A303E24A9FE92006DC24A /* LaunchScreen.storyboard */; };
+		767A304924AA1FFB006DC24A /* dataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 767A304724AA1FFB006DC24A /* dataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		763DF30924AA3AB400FF97FC /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		767A303224A9FE90006DC24A /* ErickElninoToDoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ErickElninoToDoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		767A303524A9FE90006DC24A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		767A303724A9FE90006DC24A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		767A303724A9FE90006DC24A /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		767A303A24A9FE90006DC24A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		767A303C24A9FE92006DC24A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		767A303F24A9FE92006DC24A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		767A304124A9FE92006DC24A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		767A304824AA1FFB006DC24A /* dataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +59,10 @@
 			isa = PBXGroup;
 			children = (
 				767A303524A9FE90006DC24A /* AppDelegate.swift */,
-				767A303724A9FE90006DC24A /* ViewController.swift */,
+				763DF30924AA3AB400FF97FC /* CategoryTableViewController.swift */,
+				767A303724A9FE90006DC24A /* ListViewController.swift */,
 				767A303924A9FE90006DC24A /* Main.storyboard */,
+				767A304724AA1FFB006DC24A /* dataModel.xcdatamodeld */,
 				767A303C24A9FE92006DC24A /* Assets.xcassets */,
 				767A303E24A9FE92006DC24A /* LaunchScreen.storyboard */,
 				767A304124A9FE92006DC24A /* Info.plist */,
@@ -100,7 +106,7 @@
 				};
 			};
 			buildConfigurationList = 767A302D24A9FE90006DC24A /* Build configuration list for PBXProject "ErickElninoToDoListApp" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -135,8 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				767A303824A9FE90006DC24A /* ViewController.swift in Sources */,
+				767A303824A9FE90006DC24A /* ListViewController.swift in Sources */,
+				767A304924AA1FFB006DC24A /* dataModel.xcdatamodeld in Sources */,
 				767A303624A9FE90006DC24A /* AppDelegate.swift in Sources */,
+				763DF30A24AA3AB400FF97FC /* CategoryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +300,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = todoListAppbyErick.ErickElninoToDoListApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -310,7 +318,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = todoListAppbyErick.ErickElninoToDoListApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -336,6 +344,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		767A304724AA1FFB006DC24A /* dataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				767A304824AA1FFB006DC24A /* dataModel.xcdatamodel */,
+			);
+			currentVersion = 767A304824AA1FFB006DC24A /* dataModel.xcdatamodel */;
+			path = dataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 767A302A24A9FE90006DC24A /* Project object */;
 }
