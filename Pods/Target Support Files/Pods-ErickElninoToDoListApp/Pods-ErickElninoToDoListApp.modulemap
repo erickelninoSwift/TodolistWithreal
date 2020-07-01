@@ -1,0 +1,6 @@
+framework module Pods_ErickElninoToDoListApp {
+  umbrella header "Pods-ErickElninoToDoListApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
