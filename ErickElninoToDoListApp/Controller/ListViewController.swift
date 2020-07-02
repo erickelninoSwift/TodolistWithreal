@@ -14,13 +14,13 @@ class ListViewController: UITableViewController,UITextFieldDelegate {
     @IBOutlet weak var searchbaritem: UISearchBar!
     
     
-    var myList:[item] = [item]()
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+         var myList:Results<item>?
+         let realm = try! Realm()
     var categoryproptotype:Category?
     {
         didSet
         {
-           // loadelement()
+            loadelement()
         }
     }
     
@@ -33,12 +33,12 @@ class ListViewController: UITableViewController,UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myList.count
+        return myList?.count ?? 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell  =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = myList[indexPath.row].title
-        if myList[indexPath.row].checked == true
+        cell.textLabel?.text = myList?[indexPath.row].title ?? "There was no list"
+        if myList?[indexPath.row].checked == true
         {
             cell.accessoryType = .checkmark
         }else
@@ -51,50 +51,83 @@ class ListViewController: UITableViewController,UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-         if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark
-         {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-            
-        }else
-         {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-         }
-        
-        
-        
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark
+        if let myitem = myList?[indexPath.row]
         {
-            myList[indexPath.row].checked = true
-            
-        }else
-        {
-            myList[indexPath.row].checked = false
-            
+            do
+            {
+                try realm.write
+                {
+                    myitem.checked = !myitem.checked
+                    
+                }
+            }catch
+            {
+                print("There was an error while saving",error)
+            }
         }
         
         
-       // savedata()
         
+        
+           tableView.reloadData()
+        
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete
+        {
+            if let myitem = myList?[indexPath.row]
+            {
+                do
+                {
+                    try realm.write
+                    {
+                        realm.delete(myitem)
+                        
+                    }
+                }catch
+                {
+                    print("There was an error while saving",error)
+                }
+            }
+            
+            
+            
+        }
+
+        tableView.reloadData()
     }
     
     @IBAction func Additems(_ sender: UIBarButtonItem)
     {
-        var textField:UITextField = UITextField()
+        var textField: UITextField = UITextField()
         let alert  =  UIAlertController(title: "You can item to List", message: "You can add any item ", preferredStyle: UIAlertController.Style.alert)
-//        let action  =  UIAlertAction(title: "Add", style: UIAlertAction.Style.default) { (erickaction) in
-//            print(textField.text!)
-//            let item = List(context: self.context)
-//            item.title = textField.text!
-//            item.done = false
-//            item.listParent = self.categoryproptotype!
-//            self.myList.append(item)
-//            self.savedata()
-        //}
-////        alert.addTextField { (erickField) in
-////            textField = erickField
-//        }
-        //alert.addAction(action)
-       // self.present(alert, animated: true, completion: nil)
+          let action  =  UIAlertAction(title: "Add", style: UIAlertAction.Style.default) { (erickaction) in
+              print(textField.text!)
+            if let currentCategory = self.categoryproptotype
+            {
+                do
+                {
+                    try self.realm.write
+                {
+                    let myitem = item()
+                    myitem.title = textField.text!
+                    currentCategory.myLists.append(myitem)
+                    
+                }
+                }catch
+                {
+                    print("There was an error",error)
+                }
+            }
+            self.tableView.reloadData()
+         }
+            alert.addTextField { (erickField) in
+            textField = erickField
+        }
+        alert.addAction(action)
+       self.present(alert, animated: true, completion: nil)
     }
     
 //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -107,49 +140,16 @@ class ListViewController: UITableViewController,UITextFieldDelegate {
 //    }
 //
 //
-//    func savedata()
-//    {
-//        do
-//        {
-//            try context.save()
-//
-//        }catch
-//        {
-//            print("There was an error while trying to save the data",error)
-//
-//        }
-//        tableView.reloadData()
-//    }
-//
-//    func loadelement(request:NSFetchRequest<List> = List.fetchRequest(),predicate: NSPredicate? = nil)
-//    {
-//        let CategoryPredicate = NSPredicate(format: "listParent.name MATCHES %@",categoryproptotype!.name!)
-//
-//        if let predicateunwrapped = predicate
-//        {
-//            let compundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [CategoryPredicate,predicateunwrapped])
-//            request.predicate = compundPredicate
-//
-//        }else
-//        {
-//            request.predicate = CategoryPredicate
-//
-//        }
-//
-//
-//        do
-//        {
-//            myList = try context.fetch(request)
-//
-//        }catch
-//        {
-//            print("There was an Error while trying to get your data",error)
-//        }
-//        tableView.reloadData()
-//
-//    }
-//
-//
+   
+    func loadelement()
+    {
+        myList = categoryproptotype?.myLists.sorted(byKeyPath: "title", ascending: true)
+       
+        tableView.reloadData()
+
+    }
+
+
 
 
 }

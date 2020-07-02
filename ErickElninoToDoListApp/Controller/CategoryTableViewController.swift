@@ -14,22 +14,22 @@ class CategoryTableViewController: UITableViewController,UITextFieldDelegate {
 
     let realm = try! Realm()
     
-    var mycategory:[Category] = [Category]()
+    var mycategory: Results<Category>?
     
 //    let myContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 //    
     override func viewDidLoad() {
         super.viewDidLoad()
-         loadAllItems()
+            loadAllItems()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mycategory.count
+        return mycategory?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categorycell", for: indexPath)
-        cell.textLabel?.text = mycategory[indexPath.row].name
+        cell.textLabel?.text = mycategory?[indexPath.row].name ?? "No categories was added yet"
         
         return cell
     }
@@ -46,7 +46,7 @@ class CategoryTableViewController: UITableViewController,UITextFieldDelegate {
             let secondVC = segue.destination as! ListViewController
             if let myindexpath = sender as? Int
             {
-                secondVC.categoryproptotype = mycategory[myindexpath]
+                secondVC.categoryproptotype = mycategory?[myindexpath]
             }
         }
     }
@@ -59,8 +59,7 @@ class CategoryTableViewController: UITableViewController,UITextFieldDelegate {
             print(textField.text!)
             let erick = Category()
             erick.name = textField.text!
-            self.mycategory.append(erick)
-            
+    
             self.save(mycategory: erick)
             
             
@@ -92,6 +91,7 @@ class CategoryTableViewController: UITableViewController,UITextFieldDelegate {
     
     func loadAllItems()
     {
+         mycategory = realm.objects(Category.self)
         
 
         tableView.reloadData()
