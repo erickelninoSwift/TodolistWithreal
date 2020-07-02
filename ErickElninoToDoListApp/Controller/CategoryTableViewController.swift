@@ -7,19 +7,20 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 
 class CategoryTableViewController: UITableViewController,UITextFieldDelegate {
 
+    let realm = try! Realm()
     
     var mycategory:[Category] = [Category]()
     
-    let myContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+//    let myContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadAllItems()
+         loadAllItems()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,10 +57,11 @@ class CategoryTableViewController: UITableViewController,UITextFieldDelegate {
         let alert = UIAlertController(title: "My Category", message: "Please Enter name of the new category ", preferredStyle: UIAlertController.Style.alert)
         let action = UIAlertAction(title: "Add", style: UIAlertAction.Style.default) { (erickcategory) in
             print(textField.text!)
-            let erick = Category(context: self.myContext)
+            let erick = Category()
             erick.name = textField.text!
             self.mycategory.append(erick)
-            self.saveData()
+            
+            self.save(mycategory: erick)
             
             
             
@@ -71,11 +73,14 @@ class CategoryTableViewController: UITableViewController,UITextFieldDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func saveData()
+    func save(mycategory:Category)
     {
         do
         {
-            try myContext.save()
+            try realm.write
+            {
+                realm.add(mycategory)
+            }
             
         }catch
         {
@@ -85,19 +90,12 @@ class CategoryTableViewController: UITableViewController,UITextFieldDelegate {
         tableView.reloadData()
     }
     
-    func loadAllItems(request:NSFetchRequest<Category> = Category.fetchRequest())
+    func loadAllItems()
     {
-        do
-        {
-           mycategory = try myContext.fetch(request)
-            
-        }catch
-        {
-            print("There was an error while retreiving data",error)
-        }
         
+
         tableView.reloadData()
-        
+
     }
     
     

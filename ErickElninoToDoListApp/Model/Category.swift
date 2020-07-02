@@ -1,5 +1,5 @@
 //
-//  Data.swift
+//  Category.swift
 //  ErickElninoToDoListApp
 //
 //  Created by El nino Cholo on 2020/07/02.
@@ -9,9 +9,8 @@
 import Foundation
 import RealmSwift
 
-class Data: Object
+class Category:Object
 {
-    @objc dynamic var name:String = ""
-    @objc dynamic var age:Int = 0
+    @objc dynamic var name: String = ""
+    let myLists = List<item>()
 }
-
