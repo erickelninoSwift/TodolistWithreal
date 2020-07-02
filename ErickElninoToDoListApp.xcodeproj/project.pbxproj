@@ -14,6 +14,7 @@
 		767A303D24A9FE92006DC24A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 767A303C24A9FE92006DC24A /* Assets.xcassets */; };
 		767A304024A9FE92006DC24A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 767A303E24A9FE92006DC24A /* LaunchScreen.storyboard */; };
 		767A304924AA1FFB006DC24A /* dataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 767A304724AA1FFB006DC24A /* dataModel.xcdatamodeld */; };
+		76C7ABB224AD881700A40661 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C7ABB124AD881700A40661 /* Data.swift */; };
 		F65BC59DFB44D3A5765EFFA3 /* Pods_ErickElninoToDoListApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9816FB834481915F3C466B3E /* Pods_ErickElninoToDoListApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		767A303F24A9FE92006DC24A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		767A304124A9FE92006DC24A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		767A304824AA1FFB006DC24A /* dataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dataModel.xcdatamodel; sourceTree = "<group>"; };
+		76C7ABB124AD881700A40661 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		9816FB834481915F3C466B3E /* Pods_ErickElninoToDoListApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ErickElninoToDoListApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -50,7 +52,6 @@
 				565506A42FCDDDEA44B9DA09 /* Pods-ErickElninoToDoListApp.debug.xcconfig */,
 				0E33CE2EA3058CC95D73880C /* Pods-ErickElninoToDoListApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -77,6 +78,7 @@
 			children = (
 				767A303524A9FE90006DC24A /* AppDelegate.swift */,
 				763DF30924AA3AB400FF97FC /* CategoryTableViewController.swift */,
+				76C7ABB124AD881700A40661 /* Data.swift */,
 				767A303724A9FE90006DC24A /* ListViewController.swift */,
 				767A303924A9FE90006DC24A /* Main.storyboard */,
 				767A304724AA1FFB006DC24A /* dataModel.xcdatamodeld */,
@@ -211,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				767A303824A9FE90006DC24A /* ListViewController.swift in Sources */,
+				76C7ABB224AD881700A40661 /* Data.swift in Sources */,
 				767A304924AA1FFB006DC24A /* dataModel.xcdatamodeld in Sources */,
 				767A303624A9FE90006DC24A /* AppDelegate.swift in Sources */,
 				763DF30A24AA3AB400FF97FC /* CategoryTableViewController.swift in Sources */,
